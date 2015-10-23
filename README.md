@@ -1,4 +1,6 @@
 # pool_doctors_server
 The server side program that is supporting the Pool Doctors GeneroMobile application
 
-A placeholder for the server side program that is running the web services that support the Pool Doctors Genero Mobile application
+TODO: Update to Genero 3.0, this should remove photo limitations
+
+TODO: Look at adding .sql to create database.
