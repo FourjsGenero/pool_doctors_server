@@ -1,0 +1,128 @@
+TOPFILT15|Top Mount Filter (.15m2)|TOPFILT15|
+TOPFILT30|Top Mount Filter (.3m2)|TOPFILT30|
+TOPFILT45|Top Mount Filter (.45m2)|TOPFILT45|
+TOPFILT60|Top Mount Filter (.6m2)|TOPFILT60|
+SIDFILT15|Side Mount Filter (.15m2)|SIDFILT15|
+SIDFILT30|Side Mount Filter (.3m2)|SIDFILT30|
+SIDFILT45|Side Mount Filter (.45m2)|SIDFILT45|
+SIDFILT60|Side Mount Filter (.6m2)|SIDFILT60|
+COMFILT1|Commercial Filter (1m2)|COMFILT1|
+COMFILT2|Commercial Filter (2m2)|COMFILT2|
+COMFILT3|Commercial Filter (3m2)|COMFILT3|
+COMFILT4|Commercial Filter (4m2)|COMFILT4|
+TOPVALVE|Top Mount Valve|TOPVALVE|
+TOPVALVEK|Top Mount Valve + Pipe Kit|TOPVALVEK|
+SIDEVALVE|Side Mount Valve|SIDEVALVE|
+SIDEVALVEK|Side Mount Valve + Pipe Kit|SIDEVALVEK|
+VALVE4|4 Way Butterfly Valve|VALVE4|
+VALVE5|5 Way Butterfly Valve|VALVE5|
+CARTFILT2|Cartridge Filter (2m2)|CARTFILT2|
+CARTFILT4|Cartridge Filter (4m2)|CARTFILT4|
+PREGAUSS|Pressure Gauge (Stainless Steel)|PREGAUSS|
+PREGAUP|Pressure Gauge (Plastic)|PREGAUP|
+MANOMETER|Manometer|MANOMETER|
+PUMP04|Pump (4kw)|PUMP04|
+PUMP06|Pump (6kw)|PUMP06|
+PUMP08|Pump (8kw)|PUMP08|
+PUMP10|Punp (10kw)|PUMP10|
+AIRBLOWS|Air Blower (Small)|AIRBLOWS|
+AIRBLOWM|Air Blower (Medium)|AIRBLOWM|
+AIRBLOWL|Air Blower (Large)|AIRBLOWL|
+LIGHT|Light (Plastic)|LIGHT|
+LIGHTW|Light (LED-White)|LIGHTW|
+LIGHTR|Light (LED-Red|LIGHTR|
+LIGHTB|Light (LED-Blue)|LIGHTB|
+LIGHTG|Light (LED-Green)|LIGHTG|
+LIGHTY|Light (LED-Yellow)|LIGHTY|
+LIGHTM|Light (LED-Multi)|LIGHTM|
+LIGHTS|Light (Stainless Steel)|LIGHTS|
+LIGHTCONT|Light Control Box|LIGHTCONT|
+LIGHTREM|Light Remote Control|LIGHTREM|
+TRANSFORM|Transformer|TRANSFORM|
+JUNCBOX|Junction Box|JUNCBOX|
+JUNCHOSE|Junction Box Hose|JUNCHOSE|
+JUNCADAP|Junction Box Adaptor|JUNCADAP|
+WALLSSKIM|Wall Skimmer|WALLSSKIM|
+WIDESKIM|Wide Skimmer|WIDESKIM|
+COMMSKIM|Commercial Skimmer|COMMSKIM|
+SKIMCOLLAR|Skimmer Collar Extension|SKIMCOLLAR|
+SKIMTHROAT|Skimmer Extension Throat|SKIMTHROAT|
+SKIMROUND|Skimmer Round Dress Ring|SKIMROUND|
+SKIMSQUARE|Skimmer Square Dress Ring|SKIMSQUARE|
+SKIMCOVER|Skimmer Cover|SKIMCOVER|
+VALVE|Valve|VALVE|
+VALVECHECK|Check Valve|VALVECHECK|
+VALVE2WAY|2Way Valve|VALVE2WAY|
+VALVE3WAY|3Way Valve|VALVE3WAY|
+GRATE90|Grating 90 degree|GRATE90|
+GRATE45|Grating 45 degree|GRATE45|
+GRATESUP|Grating Support Profile|GRATESUP|
+GRATE|Grating|GRATE|
+FLOORW|Floor Pad White|FLOORW|
+FLOORY|Floor Pad Yellow|FLOORY|
+FLOORG|Floor Pad Green|FLOORG|
+FLOORR|Floor Pad Red|FLOORR|
+FLOORB|Floor Pad Blue|FLOORB|
+WALLRETURN|Wall Return|WALLRETURN|
+GUTTERDR|Gutter Drain|GUTTERDR|
+DRAIN20|Drain 2 inch|DRAIN20|
+DRAIN15|Drain 1.5 inch|DRAIN15|
+SUCTIONFIT|Suction Fitting|SUCTIONFIT|
+SUCTIONCOV|Suction Fitting Cover|SUCTIONCOV|
+VACUUMFIT|Vacuum Fitting|VACUUMFIT|
+OUTLETFIT|Outlet Fitting|OUTLETFIT|
+JETEYE|Eyeball Jet|JETEYE|
+JETSTD|Eye Ball Standard Jet|JETSTD|
+AWTBODY|Air Water Tee Body|AWTBODY|
+JETSWIRL|Swirl Jet|JETSWIRL|
+JETSMOOTH|Smooth Jet|JETSMOOTH|
+LADDER15|Ladder 1.5m|LADDER15|
+LADDER20|Ladder 2m|LADDER20|
+LADDER25|Ladder 2.5m|LADDER25|
+LADDERSTEP|Ladder Step|LADDERSTEP|
+EHRANCHOR|Exit Handrail Anchor|EHRANCHOR|
+EHRFLANGE|Exit Handrail Flange|EHRFLANGE|
+HER|Exit Handrail|HER|
+HRANCHOR|Handrail Anchor|HRANCHOR|
+HRFLANGE|Handrail Flange|HRFLANGE|
+HR|Handrail|HR|
+HRSTRCON|Handrail Straight Connector|HRSTRCON|
+HRCURCON|Handrail Curved Connector|HRCURCON|
+HRENDCAP|Handrail End Cap|HRENDCAP|
+HRSTRBKT|Handrail Straight Bracket|HRSTRBKT|
+CHRLOR15|Chlorinator 15g/hr|CHRLOR15|
+CHRLOR30|Chlorinator 30g/hr|CHRLOR30|
+CHRLOR45|Chlrorinator 45g/hr|CHRLOR45|
+SALTCELL|Salt Cell|SALTCELL|
+CHEMFEED|Chemical Feeder|CHEMFEED|
+AUTOPOOL|Automatic Pool Cleaner|AUTOPOOL|
+POLE|Poles|POLE|
+HOSE|Hose 1m|HOSE|
+HOSECON|Hose Connector|HOSECON|
+HOSEFLEXI|Flexi Hose|HOSEFLEXI|
+VENTURI|Venturi Vacuum|VENTURI|
+HANDSKIM|Hand skimmer|HANDSKIM|
+BRUSH|Plastic Brush|BRUSH|
+VACUUMHEAD|Pool Vacuum Head|VACUUMHEAD|
+THERMOM|Thermometer|THERMOM|
+CHEMDISP|Chemical Dispenser|CHEMDISP|
+LIQCHL01|Liquid Chrlone 1l|LIQCHL01|
+LIQCHL10|Liquid Chrloine 10l|LIQCHL10|
+SALT25|Pool Salt 25kg|SALT25|
+GRACHL10|Chlorine Granule 10kg|GRACHL10|
+GRACHL40|Chrloine Granule 40kg|GRACHL40|
+02SHOCK|02 Shock|02SHOCK|
+TRICHOR02|Trichor Tables 2kg|TRICHOR02|
+TRICHOR04|Trichor Tables 4kg|TRICHOR04|
+TRICHOR10|Trichor Tables 10kg|TRICHOR10|
+PHBUF01|pH Buffer 1kg|PHBUF01|
+PHBUF02|pH Buffer 2kg|PHBUF02|
+PHBUF10|pH Buffer 10kg|PHBUF10|
+CALHARD02|Calcium Hardener 2kg|CALHARD02|
+CALHARD10|Calcium Hardener 10kg|CALHARD10|
+PHDEC|pH Decrease 1kg|PHDEC|
+PHINC|pH Increase 1kg|PHINC|
+DICHOR|Pool Dichor 10kg|DICHOR|
+BROMINE01|Bromine Tablets 1kg|BROMINE01|
+BROMINE05|Bromine Tables 5kg|BROMINE05|
+RJB001|Cisco SPA508G 8-Line VOIP Phone w/ POE|0123456789|
