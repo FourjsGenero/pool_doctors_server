@@ -1,5 +1,6 @@
 import xml
 import com
+import util
 
 main
 define request com.HttpServiceRequest  
@@ -9,6 +10,9 @@ define desc string
       
     defer interrupt
 
+    # seed the random number generator or getRandomJob always end up with same customer.
+    call util.math.srand()
+    
     # starts the server on the port number specified by the fglappserver environment variable
     display "Starting server..."
     call com.WebServiceEngine.Start()
