@@ -1,71 +1,75 @@
-import xml
-import com
-import util
+IMPORT util
+IMPORT com
+IMPORT FGL customer
+IMPORT FGL product
 
-main
-define request com.HttpServiceRequest  
-define str string
-define ok smallint
-define desc string 
-      
-    defer interrupt
+MAIN
+    DEFINE result INTEGER
+
+    DEFER INTERRUPT
 
     # seed the random number generator or getRandomJob always end up with same customer.
-    call util.math.srand()
-    
-    # starts the server on the port number specified by the fglappserver environment variable
-    display "Starting server..."
-    call com.WebServiceEngine.Start()
-    display "The server is listening."
+    CALL util.math.srand()
 
-    while true
-        try
-            let request = com.WebServiceEngine.GetHttpServiceRequest(-1)
-        catch
-            if int_flag then
-                let int_flag = 0
-                display "Service Interrupted"
-            else
-                display "Request Error"
-            end if
-            exit while
-        end try
-        if request is null then
-            exit while
-        end if
-        display sfmt("Processing %1", request.geturl())
-       
-        call process_http_request(request) returning ok, str,  desc
+    CONNECT TO "pool_doctors"
+    CALL com.WebServiceEngine.RegisterRestService("customer", "customer")
+    CALL com.WebServiceEngine.RegisterRestService("product", "product")
+    CALL com.WebServiceEngine.RegisterRestService("job", "job")
+    CALL com.WebServiceEngine.Start()
 
-        case
-            when str is not null
-                call request.sendTextResponse(200, "", str)
-            when ok # ok but no xml document, e.g. favicon.ico call
-                call request.sendResponse(200, "")
-            otherwise # an error of some form, an unspecified method
-                call request.sendResponse(400, desc)
-        end case
-    end while
-    display "server stopped"
-end main
+    WHILE TRUE
+        LET result = com.WebServiceEngine.ProcessServices(-1)
+        CASE result
+            WHEN 0
+                DISPLAY "Request processed."
+            WHEN -1
+                DISPLAY "Timeout reached."
+            WHEN -2
+                DISPLAY "Disconnected from application server."
+                EXIT PROGRAM # The Application server has closed the connection
+            WHEN -3
+                DISPLAY "Client Connection lost."
+            WHEN -4
+                DISPLAY "Server interrupted with Ctrl-C."
+            WHEN -9
+                DISPLAY "Unsupported operation."
+            WHEN -10
+                DISPLAY "Internal server error."
+            WHEN -23
+                DISPLAY "Deserialization error."
+            WHEN -35
+                DISPLAY "No such REST operation found."
+            WHEN -36
+                DISPLAY "Missing REST parameter."
+            OTHERWISE
+                DISPLAY "Unexpected server error " || result || "."
+                EXIT WHILE
+        END CASE
+        IF int_flag <> 0 THEN
+            LET int_flag = 0
+            EXIT WHILE
+        END IF
+    END WHILE
+END MAIN
 
-
-
+{
 function process_http_request(request)
-define request com.HttpServiceRequest  
+define request com.HttpServiceRequest
 define url string
 
 define ok smallint
 define str string
 define desc string
 
-define address, method, arglist string
+define method string
+define dummy string
 
     let url = request.getUrl()
-    
+
     connect to "pool_doctors"
     # turn the url into the address, method, and a list of arguments
-    call split_url(url) returning address, method, arglist
+    #call split_url(url) returning address, method, arglist
+    call WSHelper.SplitURL(url) returning dummy, dummy, dummy, method, dummy
 
     case method
         when "getCustomers"
@@ -83,20 +87,20 @@ define address, method, arglist string
 
         when "putJob"
             call putJob(request.readTextRequest()) returning ok, str
-        
+
         when "favicon.ico"
-            # ignore this method, called if enter url in a browser 
+            # ignore this method, called if enter url in a browser
             let ok = true
             let str = null
             let desc = ""
-         
+
         otherwise
             # return some error if any other method is called
             let ok = false
             let str = null
             let desc =  "unspecified method"
     end case
-   
+
     disconnect "pool_doctors"
     return ok, str, desc
 end function
@@ -108,7 +112,7 @@ end function
 
 
 
-
+{
 FUNCTION split_url(url)
 DEFINE url, address, method, arglist STRING
 DEFINE argpos, i INTEGER
@@ -125,7 +129,7 @@ DEFINE argpos, i INTEGER
    # Before the argument list, the address and method are seperated
    # by the last /
    LET i = argpos
-   WHILE i > 0 
+   WHILE i > 0
       LET i = i - 1
 	  IF url.getCharAt(i) = "/" THEN
 	     LET address = url.SubString(1, i-1)
@@ -139,3 +143,23 @@ DEFINE argpos, i INTEGER
    END IF
    RETURN address, method, arglist
 END FUNCTION
+}
+{
+
+IMPORT com
+IMPORT FGL crud
+
+MAIN
+DEFINE result INTEGER
+
+    CALL crud.init()
+
+    CALL com.WebServiceEngine.RegisterRestService("crud","CRUD")
+    CALL com.WebServiceEngine.Start()
+
+    WHILE TRUE
+        LET result = com.WebServiceEngine.ProcessServices(-1)
+    END WHILE
+
+END MAIN
+}

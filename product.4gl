@@ -1,35 +1,42 @@
-import util
+IMPORT util
+IMPORT com
 
-schema pool_doctors
+SCHEMA pool_doctors
 
-function getProducts()
+TYPE productRecType RECORD LIKE product.*
+TYPE productListType RECORD
+    rows DYNAMIC ARRAY OF productRecType
+END RECORD
 
-define j_resp record
-    count float,
-    results dynamic array of record
-        pr_barcode string,
-        pr_code string,
-        pr_name string
-    end record
-end record
+PUBLIC DEFINE ws_error RECORD ATTRIBUTES(WSError = "error")
+    message STRING
+END RECORD
 
-define l_product record like product.*
-define i integer
-define l_sql string
+FUNCTION get(l_pr_code LIKE product.pr_code ATTRIBUTES(WSParam))
+    ATTRIBUTES(WSGet, WSPath = "/get/{l_pr_code}", WSThrows = "400:@ws_error")
+    RETURNS productRecType ATTRIBUTES(WSName = "product", WSMedia = "application/json")
 
-define l_json_string string
+    DEFINE l_prod productRecType
 
-    let l_sql = "select * from product order by pr_code "
-    declare customers_curs cursor from l_sql 
-    let i = 0
-    foreach customers_curs into l_product.*
-        let i = i + 1
-        let j_resp.results[i].pr_barcode = l_product.pr_barcode
-        let j_resp.results[i].pr_code = l_product.pr_code
-        let j_resp.results[i].pr_name = l_product.pr_desc
-    end foreach
-    let j_resp.count = i
+    SELECT * INTO l_prod.* FROM product WHERE pr_code = l_pr_code
+    IF status = NOTFOUND THEN
+        LET ws_error.message = "Invalid Product Code"
+        CALL com.WebServiceEngine.SetRestError(400, ws_error)
+    END IF
+    RETURN l_prod.*
+END FUNCTION
 
-    let l_json_string = util.JSON.stringify(j_resp)
-    return true, l_json_string
-end function
+FUNCTION list() ATTRIBUTES(wsget, WSPath = "/list")
+    RETURNS productListType ATTRIBUTES(WSName = "products", WSMedia = "application/json")
+
+    DEFINE l_prod productRecType
+    DEFINE l_arr productListType
+    DEFINE l_sql STRING
+
+    LET l_sql = "select * from product order by pr_code "
+    DECLARE product_curs CURSOR FROM l_sql
+    FOREACH product_curs INTO l_prod.*
+        LET l_arr.rows[l_arr.rows.getLength() + 1].* = l_prod.*
+    END FOREACH
+    RETURN l_arr.*
+END FUNCTION

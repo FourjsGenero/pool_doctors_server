@@ -1,53 +1,42 @@
-import util
+IMPORT util
+IMPORT com
 
-schema pool_doctors
+SCHEMA pool_doctors
 
-function getCustomers()
+TYPE customerRecType RECORD LIKE customer.*
+TYPE customerListType RECORD
+    rows DYNAMIC ARRAY OF customerRecType
+END RECORD
 
-define j_resp record
-    count float,
-    results dynamic array of record
-        cm_addr1 string,
-        cm_addr2 string,
-        cm_addr3 string,
-        cm_addr4 string,
-        cm_code string,
-        cm_email string,
-        cm_lat float,
-        cm_lon float,
-        cm_name string,
-        cm_phone string,
-        cm_postcode string,
-        cm_rep string
-    end record
-end record
+PUBLIC DEFINE ws_error RECORD ATTRIBUTES(WSError = "error")
+    message STRING
+END RECORD
 
-define l_cust record like customer.*
-define i integer
-define l_sql string
+FUNCTION get(l_cm_code LIKE customer.cm_code ATTRIBUTES(WSParam))
+    ATTRIBUTES(WSGet, WSPath = "/get/{l_cm_code}", WSThrows = "400:@ws_error")
+    RETURNS customerRecType ATTRIBUTES(WSName = "customer", WSMedia = "application/json")
 
-define l_json_string string
+    DEFINE l_cust customerRecType
 
-    let l_sql = "select * from customer order by cm_code "
-    declare customers_curs cursor from l_sql 
-    let i = 0
-    foreach customers_curs into l_cust.*
-        let i = i + 1
-        let j_resp.results[i].cm_addr1 = l_cust.cm_addr1
-        let j_resp.results[i].cm_addr2 = l_cust.cm_addr2
-        let j_resp.results[i].cm_addr3 = l_cust.cm_addr3
-        let j_resp.results[i].cm_addr4 = l_cust.cm_addr4
-        let j_resp.results[i].cm_code = l_cust.cm_code
-        let j_resp.results[i].cm_email = l_cust.cm_email
-        let j_resp.results[i].cm_lat = l_cust.cm_lat
-        let j_resp.results[i].cm_lon = l_cust.cm_lon
-        let j_resp.results[i].cm_name = l_cust.cm_name
-        let j_resp.results[i].cm_phone = l_cust.cm_phone
-        let j_resp.results[i].cm_postcode = l_cust.cm_postcode
-        let j_resp.results[i].cm_rep = l_cust.cm_rep
-    end foreach
-    let j_resp.count = i
+    SELECT * INTO l_cust.* FROM customer WHERE cm_code = l_cm_code
+    IF status = NOTFOUND THEN
+        LET ws_error.message = "Invalid Customer Code"
+        CALL com.WebServiceEngine.SetRestError(400, ws_error)
+    END IF
+    RETURN l_cust.*
+END FUNCTION
 
-    let l_json_string = util.JSON.stringify(j_resp)
-    return true, l_json_string
-end function
+FUNCTION list() ATTRIBUTES(wsget, WSPath = "/list")
+    RETURNS customerListType ATTRIBUTES(WSName = "customers", WSMedia = "application/json")
+
+    DEFINE l_cust customerRecType
+    DEFINE l_arr customerListType
+    DEFINE l_sql STRING
+
+    LET l_sql = "select * from customer order by cm_code "
+    DECLARE customers_curs CURSOR FROM l_sql
+    FOREACH customers_curs INTO l_cust.*
+        LET l_arr.rows[l_arr.rows.getLength() + 1].* = l_cust.*
+    END FOREACH
+    RETURN l_arr.*
+END FUNCTION

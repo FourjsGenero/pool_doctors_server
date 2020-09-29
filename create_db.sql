@@ -48,7 +48,6 @@ jp_photo LVARCHAR(80),
 jp_when DATETIME YEAR TO FRACTION(3),
 jp_lat DECIMAL(11,5),
 jp_lon DECIMAL(11,5),
-jp_photo_data BYTE,
 jp_text LVARCHAR(10000));
 
 CREATE TABLE job_timesheet (

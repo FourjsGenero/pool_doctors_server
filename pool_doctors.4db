@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Schema gstVersion="31408" id="{b7e5abe2-ce5a-433a-af01-deb90cc1eea1}" version="4.0">
+  <AGSettings version="1.1">
+    <DynamicProperties version="2">
+      <DynamicProperty description="Associated label when generating form" initialValue="" isDefaultInherited="false" isHidden="false" label="Label" name="label" readOnly="false" type="TEXT"/>
+      <DynamicProperty description="Associated widget" editorInfo="contains:ButtonEdit|CheckBox|ComboBox|DateEdit|DateTimeEdit|Edit|FFImage|FFLabel|Field|Phantom|ProgressBar|RadioGroup|Slider|SpinEdit|TextEdit|TimeEdit" initialValue="Edit" isDefaultInherited="false" isHidden="false" label="Widget" name="widget" readOnly="false" type="ENUM"/>
+      <DynamicPropertyGroup collapsed="false" description="Formfied properties" label="Formfield" name="formfieldGroup" properties="label;widget"/>
+    </DynamicProperties>
+    <NodeInfos version="1">
+      <NodeInfo mimeType="db/column" properties="widget;label"/>
+    </NodeInfos>
+  </AGSettings>
+  <ExtractionSettings/>
+  <Table active="true" name="customer" status="A" uuid="db/table97">
+    <Column fglLength="10" fglType="0" name="cm_code" notNull="true" order="1" status="A" uuid="db/column609"/>
+    <Column fglLength="255" fglType="201" name="cm_name" notNull="true" order="2" status="A" uuid="db/column623"/>
+    <Column fglLength="30" fglType="201" name="cm_email" notNull="false" order="3" status="A" uuid="db/column625"/>
+    <Column fglLength="20" fglType="201" name="cm_phone" notNull="false" order="4" status="A" uuid="db/column627"/>
+    <Column fglLength="40" fglType="201" name="cm_addr1" notNull="false" order="5" status="A" uuid="db/column629"/>
+    <Column fglLength="40" fglType="201" name="cm_addr2" notNull="false" order="6" status="A" uuid="db/column631"/>
+    <Column fglLength="40" fglType="201" name="cm_addr3" notNull="false" order="7" status="A" uuid="db/column633"/>
+    <Column fglLength="40" fglType="201" name="cm_addr4" notNull="false" order="8" status="A" uuid="db/column637"/>
+    <Column fglLength="2821" fglType="5" name="cm_lat" notNull="false" order="9" status="A" uuid="db/column639"/>
+    <Column fglLength="2821" fglType="5" name="cm_lon" notNull="false" order="10" status="A" uuid="db/column641"/>
+    <Column fglLength="10" fglType="0" name="cm_postcode" notNull="false" order="11" status="A" uuid="db/column643"/>
+    <Column fglLength="2" fglType="0" name="cm_rep" notNull="false" order="12" status="A" uuid="db/column645"/>
+    <Index indexColumns="cm_code" indexConstraint="primaryKey" name="PK_customer_1" status="A" uuid="db/index4"/>
+  </Table>
+  <Table active="true" name="product" status="A" uuid="db/table99">
+    <Column fglLength="10" fglType="0" name="pr_code" notNull="true" order="1" status="A" uuid="db/column611"/>
+    <Column fglLength="255" fglType="201" name="pr_desc" notNull="false" order="2" status="A" uuid="db/column647"/>
+    <Column fglLength="30" fglType="201" name="pr_barcode" notNull="false" order="3" status="A" uuid="db/column649"/>
+    <Index indexColumns="pr_code" indexConstraint="primaryKey" name="PK_product_1" status="A" uuid="db/index6"/>
+  </Table>
+  <Table active="true" name="job_header" status="A" uuid="db/table101">
+    <Column fglLength="10" fglType="0" name="jh_code" notNull="true" order="1" status="A" uuid="db/column613"/>
+    <Column fglLength="10" fglType="0" name="jh_customer" notNull="false" order="2" status="A" uuid="db/column80"/>
+    <Column fglLength="4365" fglType="10" name="jh_date_created" notNull="false" order="3" status="A" uuid="db/column82"/>
+    <Column fglLength="1" fglType="0" name="jh_status" notNull="false" order="4" status="A" uuid="db/column84"/>
+    <Column fglLength="40" fglType="201" name="jh_address1" notNull="false" order="5" status="A" uuid="db/column86"/>
+    <Column fglLength="40" fglType="201" name="jh_address2" notNull="false" order="6" status="A" uuid="db/column88"/>
+    <Column fglLength="40" fglType="201" name="jh_address3" notNull="false" order="7" status="A" uuid="db/column90"/>
+    <Column fglLength="40" fglType="201" name="jh_address4" notNull="false" order="8" status="A" uuid="db/column92"/>
+    <Column fglLength="40" fglType="201" name="jh_contact" notNull="false" order="9" status="A" uuid="db/column94"/>
+    <Column fglLength="20" fglType="201" name="jh_phone" notNull="false" order="10" status="A" uuid="db/column96"/>
+    <Column fglLength="200" fglType="201" name="jh_task_notes" notNull="false" order="11" status="A" uuid="db/column98"/>
+    <Column fglLength="10000" fglType="201" name="jh_signature" notNull="false" order="12" status="A" uuid="db/column100"/>
+    <Column fglLength="4365" fglType="10" name="jh_date_signed" notNull="false" order="13" status="A" uuid="db/column102"/>
+    <Column fglLength="40" fglType="201" name="jh_name_signed" notNull="false" order="14" status="A" uuid="db/column104"/>
+    <Index indexColumns="jh_code" indexConstraint="primaryKey" name="PK_job_header_1" status="A" uuid="db/index2"/>
+  </Table>
+  <Table active="true" name="job_timesheet" status="A" uuid="db/table103">
+    <Column fglLength="10" fglType="0" name="jt_code" notNull="true" order="1" status="A" uuid="db/column615"/>
+    <Column fglLength="4" fglType="2" name="jt_idx" notNull="true" order="2" status="A" uuid="db/column56"/>
+    <Column fglLength="4365" fglType="10" name="jt_start" notNull="false" order="3" status="A" uuid="db/column58"/>
+    <Column fglLength="4365" fglType="10" name="jt_finish" notNull="false" order="4" status="A" uuid="db/column60"/>
+    <Column fglLength="2" fglType="0" name="jt_charge_code_id" notNull="false" order="5" status="A" uuid="db/column62"/>
+    <Column fglLength="10000" fglType="201" name="jt_text" notNull="false" order="6" status="A" uuid="db/column64"/>
+    <Index indexColumns="jt_code, jt_idx" indexConstraint="primaryKey" name="PK_job_timesheet_1" status="A" uuid="db/index10"/>
+  </Table>
+  <Table active="true" name="job_detail" status="A" uuid="db/table105">
+    <Column fglLength="10" fglType="0" name="jd_code" notNull="true" order="1" status="A" uuid="db/column617"/>
+    <Column fglLength="4" fglType="2" name="jd_line" notNull="true" order="2" status="A" uuid="db/column48"/>
+    <Column fglLength="10" fglType="0" name="jd_product" notNull="false" order="3" status="A" uuid="db/column50"/>
+    <Column fglLength="2818" fglType="5" name="jd_qty" notNull="false" order="4" status="A" uuid="db/column52"/>
+    <Column fglLength="1" fglType="0" name="jd_status" notNull="false" order="5" status="A" uuid="db/column54"/>
+    <Index indexColumns="jd_code, jd_line" indexConstraint="primaryKey" name="PK_job_detail_1" status="A" uuid="db/index8"/>
+  </Table>
+  <Table active="true" name="job_note" status="A" uuid="db/table107">
+    <Column fglLength="10" fglType="0" name="jn_code" notNull="true" order="1" status="A" uuid="db/column619"/>
+    <Column fglLength="4" fglType="2" name="jn_idx" notNull="true" order="2" status="A" uuid="db/column651"/>
+    <Column fglLength="10000" fglType="201" name="jn_note" notNull="false" order="3" status="A" uuid="db/column44"/>
+    <Column fglLength="4365" fglType="10" name="jn_when" notNull="false" order="4" status="A" uuid="db/column46"/>
+    <Index indexColumns="jn_code, jn_idx" indexConstraint="primaryKey" name="PK_job_note_1" status="A" uuid="db/index12"/>
+  </Table>
+  <Table active="true" name="job_photo" status="A" uuid="db/table109">
+    <Column fglLength="10" fglType="0" name="jp_code" notNull="true" order="1" status="A" uuid="db/column621"/>
+    <Column fglLength="4" fglType="2" name="jp_idx" notNull="true" order="2" status="A" uuid="db/column66"/>
+    <Column fglLength="255" fglType="201" name="jp_photo" notNull="false" order="3" status="A" uuid="db/column68"/>
+    <Column fglLength="4365" fglType="10" name="jp_when" notNull="false" order="4" status="A" uuid="db/column70"/>
+    <Column fglLength="2821" fglType="5" name="jp_lat" notNull="false" order="5" status="A" uuid="db/column72"/>
+    <Column fglLength="2821" fglType="5" name="jp_lon" notNull="false" order="6" status="A" uuid="db/column74"/>
+    <Column fglLength="10000" fglType="201" name="jp_text" notNull="false" order="7" status="A" uuid="db/column78"/>
+    <Index indexColumns="jp_code, jp_idx" indexConstraint="primaryKey" name="PK_job_photo_1" status="A" uuid="db/index16"/>
+  </Table>
+  <ForeignKey cascadeDelete="false" fkColumns="jd_code" fkRefColumns="jh_code" name="FK_job_detail_job_header_1" refTable="job_header" status="A" table="job_detail" uuid="db/foreignkey2"/>
+  <ForeignKey cascadeDelete="false" fkColumns="jd_product" fkRefColumns="pr_code" name="FK_job_detail_product_1" refTable="product" status="A" table="job_detail" uuid="db/foreignkey4"/>
+  <ForeignKey cascadeDelete="false" fkColumns="jh_customer" fkRefColumns="cm_code" name="FK_job_header_customer_1" refTable="customer" status="A" table="job_header" uuid="db/foreignkey6"/>
+  <ForeignKey cascadeDelete="false" fkColumns="jp_code" fkRefColumns="jh_code" name="FK_job_photo_job_header_1" refTable="job_header" status="A" table="job_photo" uuid="db/foreignkey8"/>
+  <ForeignKey cascadeDelete="false" fkColumns="jt_code" fkRefColumns="jh_code" name="FK_job_timesheet_job_header_1" refTable="job_header" status="A" table="job_timesheet" uuid="db/foreignkey10"/>
+  <ForeignKey cascadeDelete="false" fkColumns="jn_code" fkRefColumns="jh_code" name="FK_job_note_job_header_1" refTable="job_header" status="A" table="job_note" uuid="db/foreignkey12"/>
+  <Views ActiveView="View-1" showLabels="true">
+    <View Name="View-1">
+      <Layout>
+        <![CDATA[AAAAAgAAABYAZABiAC8AdABhAGIAbABlADEAMAA3QIaubd0XRc9AfeJIl0XRbj/dHrhR64UlAQAAABYAZABiAC8AdABhAGIAbABlADEAMAA1QIdNat0XRc5AUmwLF0XRaD/g3S8an756AQAAABQAZABiAC8AdABhAGIAbABlADkAOUCT23F0XRdGQF6QVNdF0Xo/3vnbItDlZwEAAAAWAGQAYgAvAHQAYQBiAGwAZQAxADAAM0CGhmbdF0XTQHCDCkAAAAM/4T987ZFodgEAAAAWAGQAYgAvAHQAYQBiAGwAZQAxADAAMUBa59b////kQFHA/Loui5M/3DlYEGJN2QEAAAAUAGQAYgAvAHQAYQBiAGwAZQA5ADfAd+nSS6LoxEBZKUBF0XQ3P9987ZFocrcBAAAAFgBkAGIALwB0AGEAYgBsAGUAMQAwADlAhtU3GXRdHECD+WdXRdFzP+GBBiTdLx4B]]>
+      </Layout>
+    </View>
+  </Views>
+</Schema>

@@ -1,0 +1,6 @@
+# Use this for production with Informix/Postgres etc.
+#dbi.database.pool_doctors.source = "pool_doctors"
+
+# Use this for quick test
+dbi.default.driver = "dbmsqt"
+dbi.database.pool_doctors.source = "pool_doctors.db"
