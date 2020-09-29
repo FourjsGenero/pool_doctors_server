@@ -23,16 +23,11 @@ END RECORD
 
 PUBLIC DEFINE Endpoint
     tGlobalEndpointType
-    = (Address:(Uri: "http://localhost:8093/product"))
+    = (Address:(Uri: "http://localhost:8093/ws/r/product"))
 
 # Error codes
 PUBLIC CONSTANT C_SUCCESS = 0
 PUBLIC CONSTANT C_WS_ERROR = 1001
-
-# generated ws_errorErrorType
-PUBLIC TYPE ws_errorErrorType RECORD
-    message STRING
-END RECORD
 
 # generated listResponseBodyType
 PUBLIC TYPE listResponseBodyType RECORD
@@ -50,14 +45,19 @@ PUBLIC TYPE getResponseBodyType RECORD
     pr_barcode STRING
 END RECORD
 
+# generated ws_errorErrorType
+PUBLIC TYPE ws_errorErrorType RECORD
+    message STRING
+END RECORD
+
 PUBLIC # error
-    DEFINE ws_error
-    ws_errorErrorType
+    DEFINE ws_error ws_errorErrorType
 
 ################################################################################
 # Operation /list
 #
 # VERB: GET
+# ID:          list
 #
 PUBLIC FUNCTION list() RETURNS(INTEGER, listResponseBodyType)
     DEFINE fullpath base.StringBuffer
@@ -66,6 +66,7 @@ PUBLIC FUNCTION list() RETURNS(INTEGER, listResponseBodyType)
     DEFINE resp com.HTTPResponse
     DEFINE resp_body listResponseBodyType
     DEFINE json_body STRING
+    DEFINE txt STRING
 
     TRY
 
@@ -125,17 +126,21 @@ END FUNCTION
 # Operation /get/{l_pr_code}
 #
 # VERB: GET
+# ID:          get
 #
 PUBLIC FUNCTION get(p_l_pr_code STRING) RETURNS(INTEGER, getResponseBodyType)
     DEFINE fullpath base.StringBuffer
     DEFINE contentType STRING
     DEFINE req com.HTTPRequest
     DEFINE resp com.HTTPResponse
-    DEFINE xml_ws_error STRING
     DEFINE resp_body getResponseBodyType
+    DEFINE xml_ws_error RECORD ATTRIBUTE(XMLName = 'ws_error')
+        message STRING
+    END RECORD
     DEFINE xml_body xml.DomDocument
     DEFINE xml_node xml.DomNode
     DEFINE json_body STRING
+    DEFINE txt STRING
 
     TRY
 
@@ -164,8 +169,7 @@ PUBLIC FUNCTION get(p_l_pr_code STRING) RETURNS(INTEGER, getResponseBodyType)
 
         # Perform request
         CALL req.setMethod("GET")
-        CALL req.setHeader(
-            "Accept", "application/json, application/xml, text/xml")
+        CALL req.setHeader("Accept", "application/json, application/xml")
         CALL req.DoRequest()
 
         # Retrieve response
@@ -195,14 +199,8 @@ PUBLIC FUNCTION get(p_l_pr_code STRING) RETURNS(INTEGER, getResponseBodyType)
                     # Parse XML response
                     LET xml_body = resp.getXmlResponse()
                     LET xml_node = xml_body.getDocumentElement()
-                    CALL xml.serializer.DomToVariable(xml_node, ws_error)
-                    RETURN C_WS_ERROR, resp_body.*
-                END IF
-                IF contentType MATCHES "*text/xml*" THEN
-                    # Parse XML response
-                    LET xml_body = resp.getXmlResponse()
-                    LET xml_node = xml_body.getDocumentElement()
-                    CALL xml.serializer.DomToVariable(xml_node, ws_error)
+                    CALL xml.serializer.DomToVariable(xml_node, xml_ws_error)
+                    LET ws_error.* = xml_ws_error.*
                     RETURN C_WS_ERROR, resp_body.*
                 END IF
                 RETURN -1, resp_body.*
