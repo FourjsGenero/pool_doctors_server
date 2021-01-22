@@ -21,9 +21,9 @@ The right hand side consists of a number of collapsible group boxes that allow y
 
 There are 3 actions
 
-Refresh - Redo the selects from the database
-Web Services - This will run the pool_doctors_service_test application that you can use to test the various Web Services
-Delete - Delete the data for the currently selected job
+* Refresh - Redo the selects from the database
+* Web Services - This will run the pool_doctors_service_test application that you can use to test the various Web Services
+* Delete - Delete the data for the currently selected job
 
 ## pool_doctors_service_test
 
