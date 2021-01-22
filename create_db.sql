@@ -1,3 +1,5 @@
+-- Use the pool_doctors_create_db application to create the database instead of this SQL
+
 CREATE TABLE customer (
 cm_code CHAR(10) NOT NULL,
 cm_name LVARCHAR(255) NOT NULL,
