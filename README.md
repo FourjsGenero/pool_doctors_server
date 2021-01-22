@@ -43,7 +43,7 @@ Creates the back end database and populates some data into the customer and prod
 
 The intended usage is that you will 
 
-1. Run pool_doctors_create_db to create the database on your backed
+1. Run pool_doctors_create_db to create the database on your backend
 2. Start pool_doctors_server to start the back end web services exposing the data in this database
 3. Start pool_doctors_enquiry to view the data in the back end database
 4. From pool_doctos_enquiry you can click Web Services button to execute a web service and click Refresh button to update your view of the database.  A good test as part of this is to i) click Web Services->Create Random Job ii) click Refresh and observe that the number of jobs in the list on the left will grow by one
