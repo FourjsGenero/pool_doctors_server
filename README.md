@@ -1,8 +1,6 @@
 # pool_doctors_server
 This project contains the back end applications to be used in conjunction with the Pool Doctors demo application for Genero Mobile.
 
-NOTE: This is in a state of flux 30/9/2020 as I perform final testing, please ignore this program for a day or two
-
 This project consists of a a number of applications.
 
 The applications are ...
