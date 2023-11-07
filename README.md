@@ -33,6 +33,8 @@ Allows you to do rudimentary tests of the various web services from the back end
 
 Tests the generation of the 4gl client code that is used to call the web services
 
+    (Small change to update language associated with repository)
+
 ## pool_doctors_create_db
 
 Creates the back end database and populates some data into the customer and product tables
